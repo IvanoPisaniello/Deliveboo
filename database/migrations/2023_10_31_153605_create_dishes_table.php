@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 5, 2);
             $table->boolean('visible');
-            $table->string('image');
-            $table->tinyInteger('discount');
+            $table->string('image')->nullable();
+            $table->tinyInteger('discount')->nullable();
             $table->text('ingredients');
 
             // $table->unsignedBigInteger('resturant_id');
