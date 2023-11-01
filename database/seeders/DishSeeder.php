@@ -19,7 +19,7 @@ class DishSeeder extends Seeder
                 'description' => 'Delicious classic margherita pizza with tomato, mozzarella, and basil.',
                 'price' => 10.99,
                 'visible' => true,
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.unmondodisapori.it%2Fprodotto%2Fpizza-margherita%2F&psig=AOvVaw0fipN3_Lo1qUCJLaX_uaBa&ust=1698918187277000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjVicrBooIDFQAAAAAdAAAAABAE',
+                'image' => 'https://images.prismic.io/eataly-us/ed3fcec7-7994-426d-a5e4-a24be5a95afd_pizza-recipe-main.jpg?auto=compress,format',
                 'discount' => 10,
                 'ingredients' => 'Tomato, Mozzarella, Basil',
 
@@ -29,7 +29,7 @@ class DishSeeder extends Seeder
                 'description' => 'Creamy pasta with eggs, Pecorino cheese, guanciale, and black pepper.',
                 'price' => 12.99,
                 'visible' => true,
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tavolartegusto.it%2Fricetta%2Fspaghetti-alla-carbonara%2F&psig=AOvVaw3O6CR2rPNYHeHR8LiyIIIT&ust=1698918857573000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIi0g4rEooIDFQAAAAAdAAAAABAE',
+                'image' => 'https://upload.wikimedia.org/wikipedia/commons/3/33/Espaguetis_carbonara.jpg',
                 'discount' => 5,
                 'ingredients' => 'Eggs, Pecorino Cheese, Guanciale, Black Pepper',
 
@@ -39,7 +39,7 @@ class DishSeeder extends Seeder
                 'description' => 'Assorted sashimi slices, including tuna, salmon, and yellowtail.',
                 'price' => 19.99,
                 'visible' => true,
-                'image' => 'https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.sushidan.com%2Fsushisashimi&psig=AOvVaw2kt37ZdvCdD472hrGaGXb0&ust=1698918940456000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDGxrHEooIDFQAAAAAdAAAAABAJ',
+                'image' => 'https://images.squarespace-cdn.com/content/v1/51d3a842e4b0d2448ac01e8d/cad0d366-f2a5-4f44-bbac-a081bf3a9e26/DeluxeSushiCombo.jpg',
                 'discount' => 20,
                 'ingredients' => 'Tuna, Salmon, Yellowtail',
 
@@ -49,7 +49,7 @@ class DishSeeder extends Seeder
                 'description' => 'Layered pasta with rich meat sauce, bechamel, and Parmesan cheese.',
                 'price' => 14.99,
                 'visible' => true,
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcooking.nytimes.com%2Frecipes%2F9530-lasagna&psig=AOvVaw3Qz0IJCd7PglZvMLDPlvsx&ust=1698919005213000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCODDuNDEooIDFQAAAAAdAAAAABAE',
+                'image' => 'https://www.aiafood.com/sites/default/files/styles/scale_1920/public/recipes/lasagne.jpg?itok=y1YTJOv-',
                 'discount' => 20,
                 'ingredients' => 'Meat Sauce, Bechamel, Parmesan Cheese',
 
