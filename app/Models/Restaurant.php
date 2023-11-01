@@ -14,6 +14,6 @@ class Restaurant extends Model
     }
 
     public function type() {
-        return $this->belongsTo(Type::class);
+        return $this->hasOne(Type::class);
     }
 }
