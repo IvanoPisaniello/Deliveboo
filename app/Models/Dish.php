@@ -9,11 +9,23 @@ class Dish extends Model
 {
     use HasFactory;
 
-    public function resturant() {
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'visible',
+        'image',
+        'discount',
+        'ingredients',
+    ];
+
+    public function resturant()
+    {
         return $this->belongsTo(Resturant::class);
     }
 
-    public function order() {
+    public function order()
+    {
         return $this->belongsToMany(Order::class);
     }
 }
