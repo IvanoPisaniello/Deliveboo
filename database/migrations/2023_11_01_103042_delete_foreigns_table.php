@@ -32,17 +32,17 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('dishes', function (Blueprint $table) {
-            $table->unsignedBigInteger('restaurant_id')->nullable();
+            $table->unsignedBigInteger('restaurant_id');
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
         });
 
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('restaurant_id')->nullable();
+            $table->unsignedBigInteger('restaurant_id');
             $table->foreign('restaurant_id')->references('id')->on("restaurants")->onDelete('cascade');
         });
 
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on("users")->onDelete('cascade');
         });
     }
