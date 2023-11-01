@@ -81,7 +81,7 @@ class DishController extends Controller
         //     Storage::delete($dish->image);
         // }
 
-        $dish->restaurants()->detach();
+        // $dish->restaurants()->detach();
 
         $dish->delete();
 
