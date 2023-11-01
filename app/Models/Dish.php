@@ -9,6 +9,8 @@ class Dish extends Model
 {
     use HasFactory;
 
+    
+
     public function resturant() {
         return $this->belongsTo(Resturant::class);
     }
