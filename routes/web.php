@@ -37,7 +37,7 @@ Route::middleware(['auth', 'verified'])
         Route::get("/dishes/{dish}", [DishController::class, "show"])->name("dishes.show");
 
         Route::get("/dishes/{dishes}/edit", [DishController::class, "edit"])->name("dishes.edit");
-        Route::put("/dishes/{dish}", [DishController::class, "update"])->name("dishes.update");
+        Route::post("/dishes/{dish}", [DishController::class, "update"])->name("dishes.update"); //da controllare perchè non gli piace il metodo put(che dovrebbe essere corretto)
 
         Route::delete("/dishes/{dish}", [DishController::class, "destroy"])->name("dishes.destroy");
     });
