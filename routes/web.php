@@ -26,8 +26,8 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'verified'])
     ->prefix("admin")
     ->name("admin.")
-    ->group(function(){
-        
+    ->group(function () {
+
         Route::get("/dishes/create", [DishController::class, "create"])->name("dishes.create");
         Route::post("/dishes", [DishController::class, "store"])->name("dishes.store");
 
@@ -36,10 +36,9 @@ Route::middleware(['auth', 'verified'])
 
         Route::get("/dishes/{dishes}/edit", [DishController::class, "edit"])->name("dishes.edit");
         Route::put("/dishes/{dish}", [DishController::class, "update"])->name("dishes.update");
-    
-        Route::delete("/dishes/{dish}", [DishController::class, "destroy"])->name("dishes.destroy");
 
-});
+        Route::delete("/dishes/{dish}", [DishController::class, "destroy"])->name("dishes.destroy");
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
