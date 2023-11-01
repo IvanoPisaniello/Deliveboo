@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\StoreDishRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Models\Dish;
@@ -29,8 +29,8 @@ class DishController extends Controller
         return view("admin.dish.create", ["restaurants" => $restaurants]);
     }
 
-    public function store(Request $request){
-        $data = $request->validate();
+    public function store(StoreDishRequest $request){
+        $data = $request->validated();
 
         // if (isset($data["image"])) {
         //     // Salvo il file in data che è quello che passo al project per creare un nuovo progetto
@@ -56,9 +56,9 @@ class DishController extends Controller
         return view("admin.dish.edit", ["restaurants" => $restaurants]);
     }
 
-    public function update(Request $request, $id){
+    public function update(StoreDishRequest $request, $id){
         $dish = Dish::findOrFail($id);
-        $data = $request->validate();
+        $data = $request->validated();
 
         // if (isset($data["image"])) {
 
