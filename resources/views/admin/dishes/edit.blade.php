@@ -40,7 +40,7 @@
                     <div class="mb-3">
                         <label for="price" class="form-label">Prezzo</label>
                         <input type="text" name="price" class="form-control @error('price') is-invalid @enderror"
-                            value="{{ old('title', $dish->price) }}">
+                            value="{{ old('price', $dish->price) }}">
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -50,7 +50,7 @@
                     <div class="mb-3">
                         <label for="discount" class="form-label">Sconto</label>
                         <input type="text" name="discount" class="form-control @error('discount') is-invalid @enderror"
-                            value="{{ old('title', $dish->discount) }}">
+                            value="{{ old('discount', $dish->discount) }}">
                         @error('discount')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -59,7 +59,7 @@
                     {{-- ingredients --}}
                     <div class="mb-3">
                         <label for="ingredients" class="form-label">Ingredienti</label>
-                        <textarea id="ingredients" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror">{{ old('description', $dish->ingredients) }}</textarea>
+                        <textarea id="ingredients" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror">{{ old('ingredients', $dish->ingredients) }}</textarea>
                         @error('ingredients')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
