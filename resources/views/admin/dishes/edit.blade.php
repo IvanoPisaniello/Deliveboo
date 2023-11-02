@@ -11,7 +11,7 @@
                 {{-- title --}}
                 <div class="mb-3">
                     <label for="title" class="form-label">Titolo</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror">
+                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $dish->title) }}">
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -20,16 +20,24 @@
                 {{-- description --}}
                 <div class="mb-3">
                     <label for="description" class="form-label">Descrizione</label>
-                    <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
+                    <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror">{{ old('description', $dish->description) }}</textarea>
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-labal">Carica Immagine</label>
+                    <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image" accept="image/*">
+                    @error('image')
+                        <div class="alert text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 {{-- price --}}
                 <div class="mb-3">
                     <label for="price" class="form-label">Prezzo</label>
-                    <input type="text" name="price" class="form-control @error('price') is-invalid @enderror">
+                    <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('title', $dish->price) }}">
                     @error('price')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -38,7 +46,7 @@
                 {{-- discount --}}
                 <div class="mb-3">
                     <label for="discount" class="form-label">Sconto</label>
-                    <input type="text" name="discount" class="form-control @error('discount') is-invalid @enderror">
+                    <input type="text" name="discount" class="form-control @error('discount') is-invalid @enderror" value="{{ old('title', $dish->discount) }}">
                     @error('discount')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -47,7 +55,7 @@
                 {{-- ingredients --}}
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredienti</label>
-                    <textarea id="ingredients" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror"></textarea>
+                    <textarea id="ingredients" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror">{{ old('description', $dish->ingredients) }}</textarea>
                     @error('ingredients')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

@@ -19,7 +19,12 @@
         </div>
 
         <div class="card my-3 p-0">
-            <img src="{{ $dish->image }}">
+            <img src=" 
+            @if (str_contains(asset('/storage/' . $dish->image), 'dishes')) 
+                {{ asset('/storage/' . $dish->image) }}
+            @else
+                {{ $dish->image }} 
+            @endif " alt="Dish Photo">
 
             {{-- <img src="{{ asset('/storage/' . $project->image) }}" class="card-img-top w-100"
                 alt="{{ $project->title }}">

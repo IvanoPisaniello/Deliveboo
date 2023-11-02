@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -33,7 +34,7 @@ class DishController extends Controller
     {
         //validates the data through the StoreDishRequest
         $data = $request->validated();
-
+        $data['image'] = Storage::put('dishes', $data['image']);
         //creates the dish in the database with the data from the from
         $dish = Dish::create($data);
 
@@ -52,21 +53,18 @@ class DishController extends Controller
         $dish = Dish::findOrFail($id);
         $data = $request->validated();
 
-        // if (isset($data["image"])) {
 
-        //     if ($dish->image) {
-        //         Storage::delete($dish->image);
-        //     }
 
-        //     $image_path = Storage::put("dishes", $data["image"]);
+        if (key_exists("image", $data)) {
+            // carico il nuovo file
+            // salvo in una variabile temporanea il percorso del nuovo file
+            $data['image'] = Storage::put('dishes', $data['image']);
 
-        //     $data["image"] = $image_path;
-        // }
+            // Dopo aver caricato la nuova immagine, PRIMA di aggiornare il db,
+            // cancelliamo dallo storage il vecchio file.
 
-        // if(isset($restaurants)){
-        //     $dish->restaurants()->sync($data["restaurants"]);
-
-        // }
+            Storage::delete($dish->image);
+        }
 
         $dish->update($data);
 
@@ -77,11 +75,13 @@ class DishController extends Controller
     {
         $dish = Dish::findOrFail($id);
 
-        // if ($dish->image) {
-        //     Storage::delete($dish->image);
-        // }
 
-        // $dish->restaurants()->detach();
+
+
+        if ($dish->image) {
+            Storage::delete($dish->image);
+        }
+
 
         $dish->delete();
 

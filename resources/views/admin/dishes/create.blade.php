@@ -25,6 +25,14 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-labal">Carica Immagine</label>
+                        <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image" accept="image/*">
+                        @error('image')
+                            <div class="alert text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     {{-- price --}}
                     <div class="mb-3">
                         <label for="price" class="form-label">Prezzo</label>
