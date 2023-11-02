@@ -11,25 +11,28 @@
                 <div class="col-4 mb-4">
                     <div class="card">
 
-                     
-
-                       
+                        {{-- Dish's Image --}}
                         <img src=" 
-                        @if (str_contains($singleDish->image, 'http'))
-                            {{ $singleDish->image }}
+                        @if (str_contains($singleDish->image, 'http')) {{ $singleDish->image }}
                         @else
-                            {{ asset('/storage/' . $singleDish->image) }}
-                        @endif " alt="Dish Photo" style="height: 200px">
+                            {{ asset('/storage/' . $singleDish->image) }} @endif "
+                            alt="Dish Photo" style="height: 200px">
 
                         <div class="card-body">
+                            {{-- Title --}}
                             <h3 class="text-center">{{ $singleDish->title }}</h3>
-
-                            {{-- <div class="">{{ $singleDish->type?->title }}</div> --}}
 
                             <div class="text-center">
                                 <a href="{{ route('admin.dishes.show', $singleDish->id) }}" class="btn btn-primary small"
                                     type="button">Dettagli
                                 </a>
+
+                                {{-- Visible or Invisible for the client --}}
+                                @if ($singleDish->visible === 1)
+                                    <div class="btn btn-info"><i class="fa-solid fa-eye"></i></div>
+                                @else
+                                    <div class="btn btn-info"><i class="fa-solid fa-eye-slash"></i></div>
+                                @endif
                             </div>
                         </div>
                     </div>
