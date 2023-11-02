@@ -34,7 +34,12 @@ class DishController extends Controller
     {
         //validates the data through the StoreDishRequest
         $data = $request->validated();
-        $data['image'] = Storage::put('dishes', $data['image']);
+
+        //checks if the image is set and if so it stores the image
+        if (isset($data['image'])) {
+            $data['image'] = Storage::put('dishes', $data['image']);
+        }
+
         //creates the dish in the database with the data from the from
         $dish = Dish::create($data);
 
