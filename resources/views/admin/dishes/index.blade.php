@@ -16,7 +16,7 @@
                         @if (str_contains($singleDish->image, 'http')) {{ $singleDish->image }}
                         @else
                             {{ asset('/storage/' . $singleDish->image) }} @endif "
-                            alt="Dish Photo" style="height: 200px">
+                            alt="Dish Photo" style="height: 200px; object-fit:cover;">
 
                         <div class="card-body">
                             {{-- Title --}}
