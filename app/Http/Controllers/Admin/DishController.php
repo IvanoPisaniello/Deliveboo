@@ -53,9 +53,7 @@ class DishController extends Controller
         $dish = Dish::findOrFail($id);
         $data = $request->validated();
 
-
-
-        if (key_exists("image", $data)) {
+        if (isset($data['image'])) {
             // carico il nuovo file
             // salvo in una variabile temporanea il percorso del nuovo file
             $data['image'] = Storage::put('dishes', $data['image']);
