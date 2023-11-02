@@ -11,9 +11,15 @@
                 <div class="col-4 mb-4">
                     <div class="card">
 
-                        <img src="{{ $singleDish->image }}">
-                        {{-- <img src="{{ asset('/storage/' . $singleDish['image']) }}" alt="{{ $singleDish->title }}"
-                    style="height: 200px"> --}}
+                     
+
+                       
+                        <img src=" 
+                        @if (str_contains($singleDish->image, 'http'))
+                            {{ $singleDish->image }}
+                        @else
+                            {{ asset('/storage/' . $singleDish->image) }}
+                        @endif " alt="Dish Photo" style="height: 200px">
 
                         <div class="card-body">
                             <h3 class="text-center">{{ $singleDish->title }}</h3>
