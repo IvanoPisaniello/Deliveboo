@@ -65,7 +65,7 @@
                         <label class="form-label">Visible</label>
                         <select class="form-select" name="visible">
                             <option value="0" selected>Not Visible</option>
-                            <option value="1">Visble</option>
+                            <option value="1">Visible</option>
                         </select>
                     </div>
 

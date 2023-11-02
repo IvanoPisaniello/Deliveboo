@@ -62,7 +62,9 @@ class DishController extends Controller
             // carico il nuovo file
             // salvo in una variabile temporanea il percorso del nuovo file
             $data['image'] = Storage::put('dishes', $data['image']);
+        }
 
+        if (isset($dish->image)) {
             // Dopo aver caricato la nuova immagine, PRIMA di aggiornare il db,
             // cancelliamo dallo storage il vecchio file.
 

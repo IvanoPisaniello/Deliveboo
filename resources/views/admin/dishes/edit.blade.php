@@ -27,6 +27,7 @@
                         @enderror
                     </div>
 
+                    {{-- Image --}}
                     <div class="mb-3">
                         <label class="form-labal">Carica Immagine</label>
                         <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image"
@@ -70,7 +71,7 @@
                         <label class="form-label">Visible</label>
                         <select class="form-select" name="visible">
                             <option value="0"{{ $dish->visible === 0 ? 'selected' : '' }}>Not Visible</option>
-                            <option value="1"{{ $dish->visible === 1 ? 'selected' : '' }}>Visble</option>
+                            <option value="1"{{ $dish->visible === 1 ? 'selected' : '' }}>Visible</option>
                         </select>
                     </div>
 
