@@ -21,11 +21,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'restaurant_name',
-        'vat',
-        'user_address',
-        // 'type',
-
     ];
 
     /**
