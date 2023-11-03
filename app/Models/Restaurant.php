@@ -14,6 +14,7 @@ class Restaurant extends Model
         'address',
         'slug',
         'vat',
+        'user_id',
     ];
 
     public function user() {
