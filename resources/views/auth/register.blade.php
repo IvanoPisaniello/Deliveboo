@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     <input id="user_address" type="text"
                                         class="form-control @error('user_address') is-invalid @enderror" name="user_address"
-                                        value="{{ old('User Addres') }}" required autocomplete="user_address">
+                                        value="{{ old('user_address') }}" required autocomplete="user_address">
 
                                     @error('user_address')
                                         <span class="invalid-feedback" role="alert">
@@ -135,30 +135,31 @@
 
 
                             {{-- type_id --}}
-                            {{-- <div class="mb-4 row">
+                            <div class="mb-4 row">
                                 <label for="type_id"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('type_id') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Restaurant Type:') }}</label>
 
                                 <div class="col-md-6">
-                                    @foreach ($types as $type)
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="type_id[]"
-                                                id="{{ $type->id }}" value="{{ $type->id }}">
-                                            <label class="form-check-label"
-                                                for="{{ $type->id }}">{{ $type->name }}</label>
-                                        </div>
-                                    @endforeach
-                                    <input id="type_id" type="text"
-                                        class="form-control @error('type_id') is-invalid @enderror" name="type_id"
-                                        value="{{ old('Type') }}" required autocomplete="type_id">
 
-                                    @error('type_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    {{-- checkboxes for the type --}}
+                                    <div class="mb-3">
+                                        @foreach ($types as $type)
+                                            <div class="form-check form-check-inline">
+                                                <input id="types" name="types[]"
+                                                    class="form-check-input @error('types') is-invalid @enderror"
+                                                    type="checkbox" value="{{ $type->id }}">
+                                                <label class="form-check-label"
+                                                    for="{{ $type->name }}">{{ $type->name }}</label>
+                                                @error('types')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
