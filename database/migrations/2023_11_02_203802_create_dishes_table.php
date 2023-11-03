@@ -21,8 +21,7 @@ return new class extends Migration
             $table->tinyInteger('discount')->nullable();
             $table->text('ingredients');
 
-            // $table->unsignedBigInteger('resturant_id');
-            // $table->foreign('resturant_id')->references('id')->on('resturants');
+            //restaurant_id missing
 
             $table->timestamps();
         });
@@ -33,7 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropForeign('dishes_resturant_id');
         Schema::dropIfExists('dishes');
     }
 };

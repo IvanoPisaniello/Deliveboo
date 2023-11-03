@@ -11,8 +11,9 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        {{-- Name --}}
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name and Lastname') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -25,6 +26,7 @@
                             </div>
                         </div>
 
+                        {{-- Email --}}
                         <div class="mb-4 row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -39,6 +41,7 @@
                             </div>
                         </div>
 
+                        {{-- Password --}}
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

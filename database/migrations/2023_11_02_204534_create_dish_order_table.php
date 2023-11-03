@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dish_order', function (Blueprint $table) {
+            $table->id();
+            
             $table->unsignedBigInteger('order_id')->nullable();
             $table->foreign('order_id')->references('id')->on('orders');
 
