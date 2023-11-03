@@ -21,13 +21,16 @@ class Dish extends Model
         'ingredients',
     ];
 
-    public function resturant()
+    public function restaurant()
     {
-        return $this->belongsTo(Resturant::class);
+        return $this->belongsTo(Restaurant::class);
     }
 
-    public function order()
-    {
+    public function orders() {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 }

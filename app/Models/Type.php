@@ -9,7 +9,7 @@ class Type extends Model
 {
     use HasFactory;
 
-    public function restaurant() {
-        return $this->belongsTo(Restaurant::class);
+    public function restaurants() {
+        return $this->belongsToMany(Restaurant::class);
     }
 }

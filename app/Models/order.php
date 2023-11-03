@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Dish;
 
-class order extends Model
+class Order extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,11 @@ class order extends Model
     //     'delivery_state'
     // ];
 
-    public function dish() {
+    public function restaurant() {
+        return $this->belongsTo(Restaurant::class);
+    }
+
+    public function dishes() {
         return $this->belongsToMany(Dish::class);
     }
 }
