@@ -38,6 +38,7 @@ class RegisteredUserController extends Controller
             'restaurant_name' => ['required', 'string', 'max:255'],
             'vat' => ['required', 'string', 'size:11'],
             'user_address' => ['required', 'string', 'max:255'],
+            'user_id'
         ]);
 
         $user = User::create([
@@ -46,15 +47,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        // dd($user);
-
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
             'address' => $request->user_address,
             'slug' => $request->restaurant_name,
             'vat' => $request->vat,
-            'user_id' => $request->id,
-
+            'user_id' => $user->id,
         ]);
 
 
