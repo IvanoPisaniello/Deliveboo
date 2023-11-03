@@ -8,11 +8,19 @@ use App\Models\Restaurant;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
     public function index()
     {
+        //recupero utente autenticato
+        $user = Auth::user();
+        $id = Auth::id();
+
+
+        dd($id);
+
         $dishes = Dish::all();
 
         return view("admin.dishes.index", compact("dishes"));
