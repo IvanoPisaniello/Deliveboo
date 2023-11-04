@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //rotta dove contattare l'API
 Route::get('restaurants', [RestaurantController::class, 'index']);
+Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
