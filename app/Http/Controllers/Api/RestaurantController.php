@@ -20,4 +20,16 @@ class RestaurantController extends Controller
             'count' => $restaurants->count()
         ]);
     }
+
+    public function show($slug) {
+        $restaurant = Restaurant::where('slug', $slug)
+        ->with(['user', 'types', 'dishes', 'dishes.category', 'dishes.orders', 'orders'])
+        ->first();
+
+        if (!$restaurant) {
+            abort(404);
+        }
+
+        return response()->json($restaurant);
+    }
 }
