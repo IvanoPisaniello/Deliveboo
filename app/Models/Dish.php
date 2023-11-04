@@ -19,6 +19,7 @@ class Dish extends Model
         'image',
         'discount',
         'ingredients',
+        'restaurant_id'
     ];
 
     public function restaurant()

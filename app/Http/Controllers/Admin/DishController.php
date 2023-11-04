@@ -14,16 +14,21 @@ class DishController extends Controller
 {
     public function index()
     {
-        //recupero utente autenticato
-        $user = Auth::user();
+        //recupero l'id dell'utente loggato
         $id = Auth::id();
 
+        //recupera il ristorante con lo user_id uguale all'id dello user che è loggato
+        $restaurant = Restaurant::where('user_id', $id)->get()->first();
 
-        dd($id);
+        if (isset($restaurant['id'])) {
+            //recupera i piatti che hanno nella colonna 'restaurant_id' l'id del ristorante appena trovato
+            $dishes = Dish::where('restaurant_id', $restaurant['id'])->get();
 
-        $dishes = Dish::all();
+            //se trova dei valori in restaurant_id ritorna i piatti del ristorante, se no ritorna solo la view vuota
+            return view("admin.dishes.index", compact("dishes"));
+        }
 
-        return view("admin.dishes.index", compact("dishes"));
+        return view("admin.dishes.index");
     }
 
     public function show($id)
@@ -42,6 +47,15 @@ class DishController extends Controller
     {
         //validates the data through the StoreDishRequest
         $data = $request->validated();
+
+        //recuper l'id dell'utente loggato
+        $id = Auth::id();
+
+        //recupera il ristorante con lo user_id uguale all'id dello user che è loggato
+        $restaurant = Restaurant::where('user_id', $id)->get()->first();
+
+        //crea la foreign key e la setta con l'id del ristorante con cui siamo loggati
+        $data['restaurant_id'] = $restaurant['id'];
 
         //checks if the image is set and if so it stores the image
         if (isset($data['image'])) {
