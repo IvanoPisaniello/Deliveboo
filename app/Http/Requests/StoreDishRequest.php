@@ -28,7 +28,9 @@ class StoreDishRequest extends FormRequest
             'visible' => 'required|digits_between:0,1',
             'image' => 'nullable|file',
             'discount' => 'integer|min:0|max:100|nullable',
-            'ingredients' => 'required|string'
+            'ingredients' => 'required|string',
+            'category_id' => 'nullable|exists:categories,id',
+
         ];
     }
 }
