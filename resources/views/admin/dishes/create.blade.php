@@ -60,6 +60,17 @@
                         @enderror
                     </div>
 
+                    {{-- dish category --}}
+                    <div class="mb-3">
+                        <label class="form-label">Categoria</label>
+                        <select class="form-select" name="category_id">
+                            <option value="" selected>Nessuna categoria</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     {{-- visible --}}
                     <div class="mb-3">
                         <label class="form-label">Visible</label>

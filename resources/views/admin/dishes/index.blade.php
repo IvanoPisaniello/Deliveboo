@@ -27,6 +27,10 @@
                                     type="button">Dettagli
                                 </a>
 
+                                {{-- categoria piatto --}}
+                                <div class="">{{ $singleDish->category?->title }}</div>
+
+
                                 {{-- Visible or Invisible for the client --}}
                                 @if ($singleDish->visible === 1)
                                     <div class="btn btn-info"><i class="fa-solid fa-eye"></i></div>
