@@ -14,6 +14,8 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Restaurant;
 use App\Models\Type;
+use Illuminate\Support\Str;
+
 
 class RegisteredUserController extends Controller
 {
@@ -46,6 +48,12 @@ class RegisteredUserController extends Controller
             'types' => ['required']
         ]);
 
+
+
+
+
+
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -55,10 +63,13 @@ class RegisteredUserController extends Controller
         $restaurant = Restaurant::create([
             'name' => $request->restaurant_name,
             'address' => $request->user_address,
-            'slug' => $request->restaurant_name,
+            'slug' => $this->generateSlug($request->restaurant_name),
             'vat' => $request->vat,
             'user_id' => $user->id,
         ]);
+
+
+
 
         $restaurant->types()->attach($request['types']);
 
@@ -67,5 +78,27 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    protected function generateSlug(string $title): string
+    {
+        $counter = 0;
+
+        do {
+
+            //if counter is 0, the slug is $title, else "$title-$counter"
+            if ($counter == 0) {
+                $slug = $title;
+            } else {
+                $slug = $title . "-" . $counter;
+            }
+
+            //if it doesn't exist the value is null and the while doesn't begin, else il cycles until it doesn't exist
+            $alreadyExists = Restaurant::where("slug", $slug)->first();
+
+            $counter++;
+        } while ($alreadyExists);
+
+        return $slug;
     }
 }
