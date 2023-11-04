@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreDishRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Restaurant;
 use App\Models\Dish;
 use Illuminate\Http\Request;
@@ -40,7 +41,9 @@ class DishController extends Controller
 
     public function create()
     {
-        return view("admin.dishes.create");
+        $categories = Category::all();
+
+        return view("admin.dishes.create", compact("categories"));
     }
 
     public function store(StoreDishRequest $request)
@@ -71,8 +74,9 @@ class DishController extends Controller
     public function edit($id)
     {
         $dish = Dish::findOrFail($id);
+        $categories = Category::all();
 
-        return view("admin.dishes.edit", ["dish" => $dish]);
+        return view("admin.dishes.edit", ["dish" => $dish,"categories" => $categories,]);
     }
 
     public function update(StoreDishRequest $request, $id)
