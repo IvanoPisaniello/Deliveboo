@@ -14,8 +14,6 @@ class RestaurantController extends Controller
     {
         $queryString = request()->query();
 
-        dd($queryString);
-
         if (isset($queryString) && $queryString != '' && Type::where('name', $queryString)->exists()) {
             $typeToSearch = Type::where('name', $queryString)->get()->first();
 
