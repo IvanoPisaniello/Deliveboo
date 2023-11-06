@@ -12,6 +12,7 @@ class RestaurantController extends Controller
 {
     public function index()
     {
+        /*
         $queryString = request()->query();
 
         if (isset($queryString) && $queryString != '' && Type::where('name', $queryString)->exists()) {
@@ -24,6 +25,7 @@ class RestaurantController extends Controller
                 'count' => $relatedRestaurants->count()
             ]);
         }
+        */
 
         $restaurants = Restaurant::with([
             'user', 'types', 'dishes', 'dishes.category',
