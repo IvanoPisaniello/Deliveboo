@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus><span class="text-danger">*</span>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                        value="{{ old('email') }}" required autocomplete="email"><span class="text-danger">*</span>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        required autocomplete="new-password"><span class="text-danger">*</span>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                        name="password_confirmation" required autocomplete="new-password"><span class="text-danger">*</span>
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@
                                     <input id="restaurant_name" type="text"
                                         class="form-control @error('restaurant_name') is-invalid @enderror"
                                         name="restaurant_name" value="{{ old('restaurant_name') }}" required
-                                        autocomplete="restaurant_name">
+                                        autocomplete="restaurant_name"><span class="text-danger">*</span>
 
                                     @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
                                 <div class="col-md-6">
                                     <input id="vat" type="text"
                                         class="form-control @error('vat') is-invalid @enderror" name="vat"
-                                        value="{{ old('vat') }}" required autocomplete="vat">
+                                        value="{{ old('vat') }}" required autocomplete="vat"><span class="text-danger">*</span>
 
                                     @error('vat')
                                         <span class="invalid-feedback" role="alert">
@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     <input id="user_address" type="text"
                                         class="form-control @error('user_address') is-invalid @enderror" name="user_address"
-                                        value="{{ old('user_address') }}" required autocomplete="user_address">
+                                        value="{{ old('user_address') }}" required autocomplete="user_address"><span class="text-danger">*</span>
 
                                     @error('user_address')
                                         <span class="invalid-feedback" role="alert">
@@ -157,10 +157,15 @@
                                                 @enderror
                                             </div>
                                         @endforeach
+                                        <span class="text-danger">*</span>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="mb-4 row">
+                                <div class="col-md-6 offset-md-4">
+                                    <p class="text-danger">I campi obbligatori sono contrassegnati con l'asterisco</p>
+                                </div>
+                            </div>
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
