@@ -44,6 +44,7 @@ class RestaurantController extends Controller
                 'count' => $relatedRestaurants->count(),
             ]);
         }
+        */
 
         $restaurants = Restaurant::with([
             'user', 'types', 'dishes', 'dishes.category',
