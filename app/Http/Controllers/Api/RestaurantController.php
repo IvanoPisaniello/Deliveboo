@@ -16,7 +16,7 @@ class RestaurantController extends Controller
 
         //se la querystring è settata ed è diversa da '' allora parte il filtro
         if (isset($query) && $query != []) {
-            $queryString = explode(',', $query['search']);
+            $queryString = explode(',', $query['type']);
 
             if (Type::where('name', $queryString)->exists()) {
                 //FILTRO SBAGLIATO TENUTO PER RICORDO :)
