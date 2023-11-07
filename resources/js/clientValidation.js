@@ -1,6 +1,6 @@
 const registerBtn = document.getElementById('onRegisterBtn');
 
-
+if(registerBtn){
 registerBtn.addEventListener('click', (event) => {
     event.preventDefault()
     const nameInput = document.getElementById('name');
@@ -113,4 +113,4 @@ registerBtn.addEventListener('click', (event) => {
     }
 
 })
-
+}
