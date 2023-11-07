@@ -4,13 +4,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col ">
-                <form action="{{ route('admin.dishes.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.dishes.store') }}" method="POST" id="onDishSubmit" enctype="multipart/form-data">
                     @csrf
 
                     {{-- title --}}
                     <div class="mb-3">
-                        <label for="title" class="form-label">Titolo</label>
-                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror">
+                        <label for="title" class="form-label">Titolo*</label>
+                        <input type="text" name="title" id="title"
+                            class="form-control @error('title') is-invalid @enderror">
                         @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -18,16 +19,18 @@
 
                     {{-- description --}}
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione</label>
+                        <label for="description" class="form-label">Descrizione*</label>
                         <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    {{-- image --}}
                     <div class="mb-3">
                         <label class="form-labal">Carica Immagine</label>
-                        <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image" accept="image/*">
+                        <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image"
+                            accept="image/*">
                         @error('image')
                             <div class="alert text-danger">{{ $message }}</div>
                         @enderror
@@ -35,8 +38,8 @@
 
                     {{-- price --}}
                     <div class="mb-3">
-                        <label for="price" class="form-label">Prezzo</label>
-                        <input type="text" name="price" class="form-control @error('price') is-invalid @enderror">
+                        <label for="price" class="form-label">Prezzo*</label>
+                        <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror">
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -45,7 +48,7 @@
                     {{-- discount --}}
                     <div class="mb-3">
                         <label for="discount" class="form-label">Sconto</label>
-                        <input type="text" name="discount" class="form-control @error('discount') is-invalid @enderror">
+                        <input type="text" name="discount" id="discount" class="form-control @error('discount') is-invalid @enderror">
                         @error('discount')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -53,7 +56,7 @@
 
                     {{-- ingredients --}}
                     <div class="mb-3">
-                        <label for="ingredients" class="form-label">Ingredienti</label>
+                        <label for="ingredients" class="form-label">Ingredienti*</label>
                         <textarea id="ingredients" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror"></textarea>
                         @error('ingredients')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -79,9 +82,10 @@
                             <option value="1">Visible</option>
                         </select>
                     </div>
-
+                    <div id="divError" class="text-danger"></div>
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary mt-5 mb-4 px-5 fw-bold" type="submit">Aggiungi</button>
+                        <button id="addDishBtn" class="btn btn-primary mt-5 mb-4 px-5 fw-bold"
+                            type="submit">Aggiungi</button>
                         <button class="btn bg-danger mt-5 mb-4 px-5 fw-bold">
                             <a class="text-white" href="{{ route('admin.dishes.index') }}">Annulla</a>
                         </button>
