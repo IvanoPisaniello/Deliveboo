@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Restaurant;
 use App\Models\Dish;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -34,9 +35,23 @@ class DishController extends Controller
 
     public function show($id)
     {
+        //recupera l'utente loggato
+        $user = Auth::user();
+
+        //recupera il piatto con id corrispondente al parametro in input
         $dish = Dish::findOrFail($id);
 
-        return view("admin.dishes.show", compact("dish"));
+        //recupera il ristorante con lo user_id uguale all'id dello user che è loggato
+        $restaurant = Restaurant::where('id', $dish['restaurant_id'])->get()->first();
+
+        //recupera l'utente con id uguale al restaurant_id del ristorante collegato al piatto
+        $loggedUser = User::where('id', $restaurant['user_id'])->get()->first();
+
+        if ($user['id'] == $loggedUser['id']) {
+            return view("admin.dishes.show", compact("dish"));
+        }
+
+        return abort(404);
     }
 
     public function create()
@@ -73,10 +88,22 @@ class DishController extends Controller
 
     public function edit($id)
     {
-        $dish = Dish::findOrFail($id);
         $categories = Category::all();
 
-        return view("admin.dishes.edit", ["dish" => $dish,"categories" => $categories,]);
+        $user = Auth::user();
+
+        $dish = Dish::findOrFail($id);
+
+        //recupera il ristorante con lo user_id uguale all'id dello user che è loggato
+        $restaurant = Restaurant::where('id', $dish['restaurant_id'])->get()->first();
+
+        $loggedUser = User::where('id', $restaurant['user_id'])->get()->first();
+
+        if ($user['id'] == $loggedUser['id']) {
+            return view("admin.dishes.edit", ["dish" => $dish, "categories" => $categories,]);
+        }
+
+        return abort(404);
     }
 
     public function update(StoreDishRequest $request, $id)
