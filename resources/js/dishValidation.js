@@ -32,22 +32,21 @@ dishBtn.addEventListener('click', (event) => {
 
     } 
 
-    //price conflitto tra la numerica e i decimali
+    //price
 
     if (price === '') {
         errors.push('Il prezzo è obbligatorio')
         divError.innerHTML = errors.join('<br>');
-    } else if(isNaN(price)){
-        errors.push('Il prezzo è numerico')
-        divError.innerHTML = errors.join('<br>');
-    } else if(price <= 0){
+    }  else if(price <= 0){
         errors.push('Il prezzo deve essere maggiore di 0')
         divError.innerHTML = errors.join('<br>');
+    }else if (/^(\d+(\,\d{0,2})?)$/.test(price)) {
+        errors.push('Il prezzo deve avere due decimali separati dal punto es. 10.00')
+        divError.innerHTML = errors.join('<br>');
+    }else if (/^(\d+(\.\d{0,1})?)$/.test(price)) {
+        errors.push('Il prezzo deve avere due decimali separati dal punto es. 10.00')
+        divError.innerHTML = errors.join('<br>');
     }
-    // else if (/^(\d+(\.\d{2})?)$/.test(price)) {
-    //     errors.push('Il prezzo deve avere due decimali')
-    //     divError.innerHTML = errors.join('<br>');
-    // }
 
 
     // ingredients
