@@ -4,14 +4,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col ">
-                <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" id="onDishSubmit" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     {{-- title --}}
                     <div class="mb-3">
-                        <label for="title" class="form-label">Titolo</label>
-                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                        <label for="title" class="form-label">Titolo*</label>
+                        <input type="text" name="title"  id="title" class="form-control @error('title') is-invalid @enderror"
                             value="{{ old('title', $dish->title) }}">
                         @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -40,7 +40,7 @@
                     {{-- price --}}
                     <div class="mb-3">
                         <label for="price" class="form-label">Prezzo</label>
-                        <input type="text" name="price" class="form-control @error('price') is-invalid @enderror"
+                        <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror"
                             value="{{ old('price', $dish->price) }}">
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -87,9 +87,12 @@
                             <option value="1"{{ $dish->visible === 1 ? 'selected' : '' }}>Visible</option>
                         </select>
                     </div>
+                    
+                    <div id="divError" class="text-danger"></div>
+
 
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary mt-5 mb-4 px-5 fw-bold" type="submit">Modifica</button>
+                        <button id="addDishBtn" class="btn btn-primary mt-5 mb-4 px-5 fw-bold" type="submit">Modifica</button>
                         <button class="btn bg-danger mt-5 mb-4 px-5 fw-bold">
                             <a class="text-white" href="{{ route('admin.dishes.index') }}">Annulla</a>
                         </button>
