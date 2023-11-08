@@ -34,7 +34,7 @@ registerBtn.addEventListener('click', (event) => {
     // email
 
     if (mailInput.value === '') {
-        errors.push('la mail è obbligatoria')
+        errors.push('La mail è obbligatoria')
         errorDiv.innerHTML = errors.join('<br>');
 
     } else if (!mailInput.value.includes('@')) {
@@ -45,17 +45,17 @@ registerBtn.addEventListener('click', (event) => {
     //password
 
     if (password.value === '') {
-        errors.push('la password è obbligatoria')
+        errors.push('La password è obbligatoria')
         errorDiv.innerHTML = errors.join('<br>');
     } else if (password.value.length < 8) {
-        errors.push('la password dev\'essere almeno di 8 caratteri')
+        errors.push('La password dev\'essere almeno di 8 caratteri')
         errorDiv.innerHTML = errors.join('<br>');
     }
 
     //confirm_password
 
     if (confirmPassword.value !== password.value) {
-        errors.push('la password dev\'essere la stessa')
+        errors.push('La password dev\'essere la stessa')
         errorDiv.innerHTML = errors.join('<br>');
     }
 
@@ -74,13 +74,13 @@ registerBtn.addEventListener('click', (event) => {
     //vat 
 
     if (vat.value === '') {
-        errors.push('il vat è obbligatorio')
+        errors.push('La p.iva è obbligatori')
         errorDiv.innerHTML = errors.join('<br>');
     } else if (vat.value.length != 11) {
-        errors.push('il vat dev\'essere almeno di 11 caratteri')
+        errors.push('La p.iva dev\'essere almeno di 11 caratteri')
         errorDiv.innerHTML = errors.join('<br>');
     } else if (isNaN(vat.value)) {
-        errors.push('Il VAT deve contenere solo caratteri numerici');
+        errors.push('La p.iva deve contenere solo caratteri numerici');
         errorDiv.innerHTML = errors.join('<br>');
     }
 
@@ -101,7 +101,7 @@ registerBtn.addEventListener('click', (event) => {
     })
 
     if (!checked) {
-        errors.push('Inserire almeno un tipo')
+        errors.push('Inserire almeno una tipologia')
         errorDiv.innerHTML = errors.join('<br>');
     }
 
