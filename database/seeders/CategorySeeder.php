@@ -14,18 +14,22 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Pizza', 
-            'Sushi', 
-            'Hamburger', 
-            'Poke', 
-            'Cinese', 
-            'Indiano',  
-            ];   
+            'Antipasto',
+            'Aperitivo',
+            'Primo',
+            'Secondo',
+            'Contorno',
+            'Dessert',
+            'Panino',
+            'Pizza',
+            'Poke',
+            'Bevande'
+        ];
 
-        foreach ($categories as $category) {             
-            $new_category = new Category();             
-            $new_category->title = $category;    
-            $new_category->save();         
+        foreach ($categories as $category) {
+            $new_category = new Category();
+            $new_category->title = $category;
+            $new_category->save();
         }
     }
 }
