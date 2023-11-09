@@ -53,15 +53,10 @@ class RestaurantController extends Controller
 
             //SE NON TROVA RISTORANTI LI RESTITUISCE TUTTI CON UN MESSAGGIO DI ERRORE IN ALLEGATO
             if (count($relatedRestaurants) == 0) {
-                $restaurants = Restaurant::with([
-                    'user', 'types', 'dishes', 'dishes.category',
-                    'dishes.orders', 'orders'
-                ])->get();
-
+                $restaurants = [];
+                array_push($restaurants, 'false');
                 return response()->json([
                     'results' => $restaurants,
-                    'count' => $restaurants->count(),
-                    'error' => 'Nessuna corrispondenza'
                 ]);
             }
 
