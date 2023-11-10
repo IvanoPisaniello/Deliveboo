@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function store(Request $request) {
         $data = $request->all();
-        
+
         $newOrder = new Order;
 
         $newOrder->firstname = $data['name'];
@@ -19,6 +19,7 @@ class OrderController extends Controller
         $newOrder->address = $data['address'];
         $newOrder->amount = $request->store['totalPrice'];
         $newOrder->delivery_state = 0;
+        $newOrder->restaurant_id = $request->store["cartDish"][0]["restaurant_id"];
         $newOrder->save();
 
         return response()->json([
