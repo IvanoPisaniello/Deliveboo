@@ -16,7 +16,8 @@ class Order extends Model
         'email',
         'address',
         'amount',
-        'delivery_state'
+        'delivery_state',
+        'restaurant_id'
     ];
 
     public function restaurant() {
