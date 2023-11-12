@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Dish;
+use Braintree\Gateway;
 
 class OrderController extends Controller
 {
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $data = $request->all();
 
         $newOrder = Order::create([
@@ -24,7 +26,7 @@ class OrderController extends Controller
 
         //ciclo su quello che contiene il cartDish che contiene elementi del tipo:
         //$data['store']['cartDish'][0] = id: 8, price: "20.00", restaurant_id: 27, title: "Pizza Margherita"
-        for ($i=0; $i < count($data['store']['cartDish']); $i++) {
+        for ($i = 0; $i < count($data['store']['cartDish']); $i++) {
             //per ogni iterazione vado a prendere nella tabella Dishes il piatto con id corrispondente all'i dell'i-esimo piatto passato da front-end(il ->first() è necessario se no ritorna un array e non un oggetto)
             $singleDish = Dish::where('id', '=', $data['store']['cartDish'][$i]['id'])->get()->first();
 
@@ -33,7 +35,22 @@ class OrderController extends Controller
         }
 
         return response()->json([
-            'results' => $newOrder
+            'results' => $this->generate()
         ]);
+    }
+
+    public function generate()
+    {
+        //comando "composer php composer.phar install"
+        $gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => 'jtzyx9ysfdj22xnc',
+            'publicKey' => 'ntf7wr6hzs78r63f',
+            'privateKey' => '89dd655333aa01c4a4f5425ffd2cac72'
+        ]);
+
+        $token = $gateway->clientToken()->generate();
+
+        return $token;
     }
 }
