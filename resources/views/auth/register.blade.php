@@ -141,7 +141,32 @@
                                 </div>
                             </div>
 
+                            {{-- image --}}
+                    <div class="mb-3">
+                        <label class="form-labal">Carica Immagine</label>
+                        <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image"
+                            accept="image/*">
+                        @error('image')
+                            <div class="alert text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
+                    {{-- Telephone Number --}}
+
+                    <div class="mb-4 row">
+                        <label for="telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono') }}</label>
+                    
+                        <div class="col-md-6">
+                            <input id="telephone_number" type="tel" class="form-control @error('telephone_number') is-invalid @enderror"
+                                name="telephone_number" value="{{ old('telephone_number') }}" autocomplete="telephone_number">
+                    
+                            @error('telephone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
 
                             {{-- type_id --}}
                             <div class="mb-4 row">
