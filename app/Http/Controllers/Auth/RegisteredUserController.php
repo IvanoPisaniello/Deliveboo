@@ -50,8 +50,8 @@ class RegisteredUserController extends Controller
             'types' => ['required']
         ]);
 
-        if (isset($data['image'])) {
-            $data['image'] = Storage::put('restaurants', $data['image']);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('restaurants');
         }
 
 
@@ -70,7 +70,7 @@ class RegisteredUserController extends Controller
             'slug' => $this->generateSlug($request->restaurant_name),
             'vat' => $request->vat,
             'user_id' => $user->id,
-            'image' => $request->image,
+            'image' => $imagePath,
             'telephone_number' => $request->telephone_number,
         ]);
 
