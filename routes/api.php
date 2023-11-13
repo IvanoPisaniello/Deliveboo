@@ -28,5 +28,5 @@ Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
 
 Route::post('orders', [OrderController::class, 'store']);
 
-Route::get('orders', [OrderController::class, 'index']);
-// Route::post ('orders', [OrderController::class, 'store']);
+Route::get('orders/token', [OrderController::class, 'generate']);
+Route::post ('orders/payment', [OrderController::class, 'payment']);

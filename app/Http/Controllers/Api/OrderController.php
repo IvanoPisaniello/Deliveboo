@@ -10,13 +10,10 @@ use Braintree\Gateway;
 
 class OrderController extends Controller
 {
-    public function index()
-    {
-        $this->generate();
-    }
-
-
-
+    // public function index()
+    // {
+    //     $this->generate();
+    // }
 
     public function store(Request $request)
     {
@@ -42,9 +39,8 @@ class OrderController extends Controller
             $singleDish->orders()->attach($newOrder, ['quantity' => $data['store']['cartDish'][$i]['count']]);
         }
         
-
         return response()->json([
-            'results' => $this->payment()
+            'results' => $newOrder
         ]);
     }
 
@@ -60,7 +56,9 @@ class OrderController extends Controller
 
         $token = $gateway->clientToken()->generate();
 
-        return response()->json(["token" => $token]);
+        return response()->json(
+            $token
+        );
     }
 
     public function payment()
