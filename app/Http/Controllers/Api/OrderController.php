@@ -10,6 +10,14 @@ use Braintree\Gateway;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $this->generate();
+    }
+
+
+
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -33,24 +41,48 @@ class OrderController extends Controller
             //va ad inserire nella tabella ponte la coppia di id dell'ordine e del piatto e nella colonna quantity aggiunge il 'count' di ogni piatto
             $singleDish->orders()->attach($newOrder, ['quantity' => $data['store']['cartDish'][$i]['count']]);
         }
+        
 
         return response()->json([
-            'results' => $this->generate()
+            'results' => $this->payment()
         ]);
     }
 
     public function generate()
     {
-        //comando "composer php composer.phar install"
         $gateway = new Gateway([
+            //environment da lasciare cosi per tutti, mettere nel .env solo le altre credenziali
             'environment' => 'sandbox',
-            'merchantId' => 'jtzyx9ysfdj22xnc',
-            'publicKey' => 'ntf7wr6hzs78r63f',
-            'privateKey' => '89dd655333aa01c4a4f5425ffd2cac72'
+            'merchantId' => env("BRAINTREE_MERCHANT_ID"),
+            'publicKey' => env("BRAINTREE_PUBLIC_KEY"),
+            'privateKey' => env("BRAINTREE_PRIVATE_KEY"),
         ]);
 
         $token = $gateway->clientToken()->generate();
 
-        return $token;
+        return response()->json(["token" => $token]);
+    }
+
+    public function payment()
+    {
+        $nonceFromTheClient = request('payment_method_nonce');
+
+        $gateway = new Gateway([
+            //environment da lasciare cosi per tutti, mettere nel .env solo le altre credenziali
+            'environment' => 'sandbox',
+            'merchantId' => env("BRAINTREE_MERCHANT_ID"),
+            'publicKey' => env("BRAINTREE_PUBLIC_KEY"),
+            'privateKey' => env("BRAINTREE_PRIVATE_KEY"),
+        ]);
+
+        $results = $gateway->transaction()->sale([
+            'amount' => '30.00',
+            'paymentMethodNonce' => $nonceFromTheClient,
+            'options' => [
+            'submitForSettlement' => true
+            ]
+        ]);
+
+        return response()->json(["results" => $results]);
     }
 }
