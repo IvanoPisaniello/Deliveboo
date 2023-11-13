@@ -61,8 +61,9 @@ class OrderController extends Controller
         );
     }
 
-    public function payment()
+    public function payment(Request $request)
     {
+        $amount = $request['amount'];
         $nonceFromTheClient = request('payment_method_nonce');
 
         $gateway = new Gateway([
@@ -74,7 +75,7 @@ class OrderController extends Controller
         ]);
 
         $results = $gateway->transaction()->sale([
-            'amount' => '30.00',
+            'amount' => $amount,
             'paymentMethodNonce' => $nonceFromTheClient,
             'options' => [
             'submitForSettlement' => true
