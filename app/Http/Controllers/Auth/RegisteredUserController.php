@@ -15,6 +15,8 @@ use Illuminate\View\View;
 use App\Models\Restaurant;
 use App\Models\Type;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class RegisteredUserController extends Controller
@@ -48,7 +50,9 @@ class RegisteredUserController extends Controller
             'types' => ['required']
         ]);
 
-
+        if (isset($data['image'])) {
+            $data['image'] = Storage::put('restaurants', $data['image']);
+        }
 
 
 
@@ -66,6 +70,8 @@ class RegisteredUserController extends Controller
             'slug' => $this->generateSlug($request->restaurant_name),
             'vat' => $request->vat,
             'user_id' => $user->id,
+            'image' => $request->image,
+            'telephone_number' => $request->telephone_number,
         ]);
 
 
