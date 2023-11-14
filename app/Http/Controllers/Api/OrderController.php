@@ -23,6 +23,14 @@ class OrderController extends Controller
     {
         $data = $request->all();
 
+        $request->validate([
+            'name' => ['required', 'string'],
+            'surname' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'address' => ['required', 'string'],
+            'store.totalPrice' => ['required', 'numeric', 'min:0'],
+        ]);
+
         $newOrder = Order::create([
             'firstname' => $data['name'],
             'lastname' => $data['surname'],

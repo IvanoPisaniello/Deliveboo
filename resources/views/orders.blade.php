@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="text-center mt-3 mb-3">Storico ordini</h1>
     <div class="container">
-        <div class="row">
+        <div class="row row-gap-3">
             @foreach ($orders as $order)
                 <div class="col-4">
                     <div class="card bg-success-subtle">
