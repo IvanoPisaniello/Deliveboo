@@ -25,6 +25,11 @@ Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//rotta riepilogo ordini
+Route::get('/admin/orders', function () {
+    return view('orders');
+})->middleware(['auth', 'verified'])->name('dashboard.orders');
+
 Route::middleware(['auth', 'verified'])
     ->prefix("admin")
     ->name("admin.")
