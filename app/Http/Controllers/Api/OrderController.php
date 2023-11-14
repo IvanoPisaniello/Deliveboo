@@ -7,6 +7,10 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 use Braintree\Gateway;
+use App\Mail\newOrder;
+use App\Mail\newOrderRestaurant;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Restaurant;
 
 class OrderController extends Controller
 {
@@ -22,12 +26,23 @@ class OrderController extends Controller
         $newOrder = Order::create([
             'firstname' => $data['name'],
             'lastname' => $data['surname'],
-            'email' => $data['mail'],
+            'email' => $data['email'],
             'address' => $data['address'],
             'amount' => $request->store['totalPrice'],
             'delivery_state' => 0,
             'restaurant_id' => $data['store']['cartDish'][0]['restaurant_id']
         ]);
+
+        //email inviata all'utente che ordina
+        Mail::to($data['email'])->send(new newOrder($data));
+        //email inviata al ristoratore
+        $restaurantId = $data['store']['cartDish'][0]['restaurant_id'];
+        $restaurantEmail = Restaurant::where('restaurants.id', $restaurantId)
+            ->join('users', 'restaurants.user_id', '=', 'users.id')
+            ->value('users.email');
+        Mail::to($restaurantEmail)->send(new newOrderRestaurant($data));
+
+
 
         //ciclo su quello che contiene il cartDish che contiene elementi del tipo:
         //$data['store']['cartDish'][0] = id: 8, price: "20.00", restaurant_id: 27, title: "Pizza Margherita"
@@ -38,9 +53,9 @@ class OrderController extends Controller
             //va ad inserire nella tabella ponte la coppia di id dell'ordine e del piatto e nella colonna quantity aggiunge il 'count' di ogni piatto
             $singleDish->orders()->attach($newOrder, ['quantity' => $data['store']['cartDish'][$i]['count']]);
         }
-        
+
         return response()->json([
-            'results' => $newOrder
+            'results' => $newOrder, 'message' => 'grazie'
         ]);
     }
 
@@ -78,7 +93,7 @@ class OrderController extends Controller
             'amount' => $amount,
             'paymentMethodNonce' => $nonceFromTheClient,
             'options' => [
-            'submitForSettlement' => true
+                'submitForSettlement' => true
             ]
         ]);
 
