@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,9 @@ Route::get('/admin', function () {
 //rotta riepilogo ordini
 Route::get('/admin/orders', [OrderController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('dashboard.orders');
+
+Route::get('chart', [ChartController::class, 'index'])
+->middleware(['auth', 'verified'])->name('dashboard.chart');
 
 Route::middleware(['auth', 'verified'])
     ->prefix("admin")
