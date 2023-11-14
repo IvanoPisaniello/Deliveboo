@@ -117,8 +117,10 @@ class DishController extends Controller
             // salvo in una variabile temporanea il percorso del nuovo file
             $data['image'] = Storage::put('dishes', $data['image']);
 
-            //se c'è una nuova immagine settata cancella quella vecchia
-            Storage::delete($dish->image);
+            if ($dish->image != null) {
+                //se c'è una nuova immagine settata cancella quella vecchia
+                Storage::delete($dish->image);
+            }
         } else {
             Storage::put('dishes', $dish->image);
         }
