@@ -20,7 +20,9 @@
         </div>
     </div>
     <div class="p-4 mt-3">
-        <h3><a href="#" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Vedi statistiche ordini</a></h3>
+        <h3><a href="{{ route('dashboard.orders') }}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            Vedi statistiche ordini
+        </a></h3>
     </div>
 </div>
 @endsection
