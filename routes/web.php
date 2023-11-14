@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::get('/home', [DishController::class, "index"])->middleware(['auth', 'veri
 Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+//rotta riepilogo ordini
+Route::get('/admin/orders', [OrderController::class, 'index'])
+->middleware(['auth', 'verified'])->name('dashboard.orders');
 
 Route::middleware(['auth', 'verified'])
     ->prefix("admin")
