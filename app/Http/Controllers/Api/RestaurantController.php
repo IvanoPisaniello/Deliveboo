@@ -17,20 +17,20 @@ class RestaurantController extends Controller
         //se la querystring è settata ed è diversa da '' allora parte il filtro
         if (isset($query) && $query != []) {
             // FILTRO DELLE CARD DEI RISTORANTI:
-            // if ($query['type']) {
-            //     dump('la query è type');
-            //     $queryString = explode(',', $query['type']);
+            if ($query['type']) {
 
-            //     if (Type::where('name', $queryString)->exists()) {
-            //         $typeToSearch = Type::where('name', $queryString)->get()->first();
+                if (Type::where('name', $query['type'])->exists()) {
+                    $typeToSearch = Type::where('name', $query['type'])->get()->first();
 
-            //         $relatedRestaurants = $typeToSearch->restaurants;
-            //     }
-            //     return response()->json([
-            //         'results' => $relatedRestaurants,
-            //         'count' => $relatedRestaurants->count(),
-            //     ]);
-            // }
+                    $relatedRestaurants = $typeToSearch->restaurants;
+
+
+                    return response()->json([
+                        'results' => $relatedRestaurants,
+                        'count' => $relatedRestaurants->count(),
+                    ]);
+                }
+            }
 
             //FILTRO DEI RISTORANTI TRAMITE CHECKBOX
             $selectedTypes = [];
