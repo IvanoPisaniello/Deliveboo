@@ -15,7 +15,7 @@
             </div>
             <div>
                 <h2>Riepilogo degli ordini:</h2>
-                @dd(Auth::user()->restaurant)
+                
             </div>
             
         </div>
