@@ -23,10 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //rotta dove contattare l'API
+Route::post('orders', [OrderController::class, 'store']);
 Route::get('restaurants', [RestaurantController::class, 'index']);
 Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
 
-Route::post('orders', [OrderController::class, 'store']);
+
 
 Route::get('orders/token', [OrderController::class, 'generate']);
-Route::post ('orders/payment', [OrderController::class, 'payment']);
+Route::post('orders/payment', [OrderController::class, 'payment']);
