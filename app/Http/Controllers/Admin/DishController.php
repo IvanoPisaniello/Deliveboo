@@ -24,7 +24,7 @@ class DishController extends Controller
 
         if (isset($restaurant['id'])) {
             //recupera i piatti che hanno nella colonna 'restaurant_id' l'id del ristorante appena trovato
-            $dishes = Dish::where('restaurant_id', $restaurant['id'])->get();
+            $dishes = Dish::where('restaurant_id', $restaurant['id'])->orderBy('title', 'asc')->get();
 
             //se trova dei valori in restaurant_id ritorna i piatti del ristorante, se no ritorna solo la view vuota
             return view("admin.dishes.index", compact("dishes"));
