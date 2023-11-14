@@ -8,7 +8,7 @@
                 <div class="col-4">
                     <div class="card bg-success-subtle">
                         <div class="card-body">
-                            <h5 class="card-title">Id ordine: {{ $order->id }} </h5>
+                            <h5 class="card-title">Ordine N° {{ $order->id }} </h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">Nome: {{ $order->firstname }} </h6>
                             <h6 class="card-subtitle mb-2 text-body-secondary">Cognome: {{ $order->lastname }} </h6>
                             <p class="card-text">Indirizzo di consegna: {{ $order->address }} </p>
