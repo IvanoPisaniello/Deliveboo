@@ -75,7 +75,7 @@ class DishController extends Controller
         //crea la foreign key e la setta con l'id del ristorante con cui siamo loggati
         $data['restaurant_id'] = $restaurant['id'];
 
-        //checks if the image is set and if so it stores the image
+        //controlla se l'immagine è settata, se lo è allora salva l'immagine
         if (isset($data['image'])) {
             $data['image'] = Storage::put('dishes', $data['image']);
         }
@@ -111,17 +111,16 @@ class DishController extends Controller
         $dish = Dish::findOrFail($id);
         $data = $request->validated();
 
+        //se c'è una nuova immagine settata salva quella, se no rimette quella presente in precedenza
         if (isset($data['image'])) {
             // carico il nuovo file
             // salvo in una variabile temporanea il percorso del nuovo file
             $data['image'] = Storage::put('dishes', $data['image']);
-        }
 
-        if (isset($dish->image)) {
-            // Dopo aver caricato la nuova immagine, PRIMA di aggiornare il db,
-            // cancelliamo dallo storage il vecchio file.
-
+            //se c'è una nuova immagine settata cancella quella vecchia
             Storage::delete($dish->image);
+        } else {
+            Storage::put('dishes', $dish->image);
         }
 
         $dish->update($data);
