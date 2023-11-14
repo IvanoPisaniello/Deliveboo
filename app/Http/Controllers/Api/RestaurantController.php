@@ -17,7 +17,7 @@ class RestaurantController extends Controller
         //se la querystring è settata ed è diversa da '' allora parte il filtro
         if (isset($query) && $query != []) {
             // FILTRO DELLE CARD DEI RISTORANTI:
-            if ($query['type']) {
+            if (isset($query['type'])) {
 
                 if (Type::where('name', $query['type'])->exists()) {
                     $typeToSearch = Type::where('name', $query['type'])->get()->first();
