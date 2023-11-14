@@ -14,22 +14,28 @@ class Restaurant extends Model
         'address',
         'slug',
         'vat',
+        'image',
         'user_id',
+        'telephone_number',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function types() {
+    public function types()
+    {
         return $this->belongsToMany(Type::class);
     }
 
-    public function dishes() {
+    public function dishes()
+    {
         return $this->hasMany(Dish::class);
     }
 
-    public function Orders() {
+    public function Orders()
+    {
         return $this->hasMany(Order::class);
     }
 }
