@@ -27,16 +27,16 @@
                 {{-- <img src="{{ asset('/storage/' . $project->image) }}" class="card-img-top w-100"
                 alt="{{ $project->title }}">
             <div class="card-body"> --}}
-                <h5 class="card-title">{{ $dish->title }}</h5>
+                <h5 class="card-title px-2 pt-3">{{ $dish->title }}</h5>
 
-                <p class="card-text">Descrizione: {{ $dish->description }}</p>
-                <p class="card-text">Ingredienti: {{ $dish->ingredients }}</p>
+                <p class="card-text px-2">Descrizione: {{ $dish->description }}</p>
+                <p class="card-text px-2">Ingredienti: {{ $dish->ingredients }}</p>
 
 
                 <div>
                     <p class="card-text">
                         <small class="text-body-secondary">
-                            <div class="card-text">Prezzo: {{ $dish->price }}€</div>
+                            <div class="card-text px-2">Prezzo: {{ $dish->price }}€</div>
                         </small>
                     </p>
 
