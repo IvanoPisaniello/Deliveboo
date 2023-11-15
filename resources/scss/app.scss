@@ -1,2 +1,21 @@
 @use '~bootstrap/scss/bootstrap';
 @use "@fortawesome/fontawesome-free/css/all.min.css";
+@import "./partials/variable";
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Dancing+Script:wght@400;500;600;700&family=Fredoka:wght@300&family=Source+Sans+3&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+
+* {
+    font-family: 'Didact Gothic', sans-serif;
+    color: $secondary-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Averia Serif Libre', serif;
+    font-weight: 700;
+}
