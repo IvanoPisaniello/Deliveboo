@@ -19,3 +19,15 @@ h6 {
     font-family: 'Averia Serif Libre', serif;
     font-weight: 700;
 }
+
+
+.btn-orange-text-white {
+    background-color: $primary-color;
+    color: $white-color;
+}
+
+.btn-orange-text-white:hover {
+    border: 1px solid $primary-color;
+    background-color: $white-color;
+    color: $primary-color;
+}
