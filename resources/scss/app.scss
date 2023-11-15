@@ -31,3 +31,23 @@ h6 {
     background-color: $white-color;
     color: $primary-color;
 }
+
+
+.btn-black-text-white {
+    background-color: $secondary-color;
+    color: $white-color;
+}
+
+.btn-black-text-white:hover {
+    border: 1px solid $secondary-color;
+    background-color: $white-color;
+    color: $secondary-color;
+}
+
+.bg-light-gray{
+    background-color: $navbar-text-color;
+}
+
+.bg-primary-ylw{
+    background-color: $primary-color;
+}
