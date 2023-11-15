@@ -22,23 +22,21 @@
             @if (str_contains(asset('/storage/' . $dish->image), 'dishes')) {{ asset('/storage/' . $dish->image) }}
             @else
                 {{ $dish->image }} @endif "
-                    alt="Dish Photo">
+                    alt="Dish Photo" style="height: 200px; object-fit:cover;">
 
                 {{-- <img src="{{ asset('/storage/' . $project->image) }}" class="card-img-top w-100"
                 alt="{{ $project->title }}">
             <div class="card-body"> --}}
                 <h5 class="card-title">{{ $dish->title }}</h5>
 
-                <p class="card-text">{{ $dish->description }}</p>
-                <p class="card-text">{{ $dish->ingredients }}</p>
+                <p class="card-text">Descrizione: {{ $dish->description }}</p>
+                <p class="card-text">Ingredienti: {{ $dish->ingredients }}</p>
 
 
                 <div>
-
-
                     <p class="card-text">
                         <small class="text-body-secondary">
-                            <div class="card-text">{{ $dish->price }}</div>
+                            <div class="card-text">Prezzo: {{ $dish->price }}€</div>
                         </small>
                     </p>
 
