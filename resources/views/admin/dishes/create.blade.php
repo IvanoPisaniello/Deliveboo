@@ -9,7 +9,7 @@
 
                     {{-- title --}}
                     <div class="mb-3">
-                        <label for="title" class="form-label">Titolo*</label>
+                        <label for="title" class="form-label">Titolo *</label>
                         <input type="text" name="title" id="title"
                             class="form-control @error('title') is-invalid @enderror">
                         @error('title')
@@ -19,7 +19,7 @@
 
                     {{-- description --}}
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione*</label>
+                        <label for="description" class="form-label">Descrizione *</label>
                         <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -38,7 +38,7 @@
 
                     {{-- price --}}
                     <div class="mb-3">
-                        <label for="price" class="form-label">Prezzo*</label>
+                        <label for="price" class="form-label">Prezzo *</label>
                         <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror">
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -56,7 +56,7 @@
 
                     {{-- ingredients --}}
                     <div class="mb-3">
-                        <label for="ingredients" class="form-label">Ingredienti*</label>
+                        <label for="ingredients" class="form-label">Ingredienti *</label>
                         <textarea id="ingredients" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror"></textarea>
                         @error('ingredients')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -76,7 +76,7 @@
 
                     {{-- visible --}}
                     <div class="mb-3">
-                        <label class="form-label">Visible</label>
+                        <label class="form-label">Visible *</label>
                         <select class="form-select" name="visible">
                             <option value="0" selected>Not Visible</option>
                             <option value="1">Visible</option>
