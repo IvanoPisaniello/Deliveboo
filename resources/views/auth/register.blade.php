@@ -154,7 +154,7 @@
                     {{-- Telephone Number --}}
 
                     <div class="mb-4 row">
-                        <label for="telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono') }}</label>
+                        <label for="telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono *') }}</label>
                     
                         <div class="col-md-6">
                             <input id="telephone_number" type="tel" class="form-control @error('telephone_number') is-invalid @enderror"
