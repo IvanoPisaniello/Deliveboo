@@ -3,8 +3,11 @@
 
 <div class="jumbotron p-5 mb-4 bg-light rounded-3">
     <div class="container py-5">
-        
-        <h1 class="display-5 fw-bold">
+        <div style="width: 300px">
+            <img src="{{ asset('img/logo_deliveboo.png') }}" alt="logo-deliveboo"
+            class="img-fluid">
+        </div>
+        <h1 class="display-5 fw-bold mt-5">
             Benvenuto in Deliveboo
         </h1>
 
