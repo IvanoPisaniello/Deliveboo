@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="max-width: 720px">
         <div class="row">
             <div>
                 <a href={{ route('admin.dishes.index') }} class="btn btn-outline-primary my-4 ">Indietro</a>
@@ -22,7 +22,7 @@
             @if (str_contains(asset('/storage/' . $dish->image), 'dishes')) {{ asset('/storage/' . $dish->image) }}
             @else
                 {{ $dish->image }} @endif "
-                    alt="Dish Photo" style="height: 200px; object-fit:cover;">
+                    alt="Dish Photo" style="height: 400px; object-fit:cover;">
 
                 {{-- <img src="{{ asset('/storage/' . $project->image) }}" class="card-img-top w-100"
                 alt="{{ $project->title }}">
