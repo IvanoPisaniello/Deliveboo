@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Restaurant;
+use App\Models\Type;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +26,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        //searches in the types table alle the types
+        $types = Type::all();
+
+        return view('auth.register', compact('types'));
     }
 
     /**
@@ -32,20 +41,70 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'restaurant_name' => ['required', 'string', 'max:255'],
+            'vat' => ['required', 'string', 'size:11'],
+            'user_address' => ['required', 'string', 'max:255'],
+            'user_id',
+            'types' => ['required']
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('restaurants');
+        }
+
+
+
+
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
+
+        $restaurant = Restaurant::create([
+            'name' => $request->restaurant_name,
+            'address' => $request->user_address,
+            'slug' => $this->generateSlug($request->restaurant_name),
+            'vat' => $request->vat,
+            'user_id' => $user->id,
+            'image' => $imagePath,
+            'telephone_number' => $request->telephone_number,
+        ]);
+
+
+
+
+        $restaurant->types()->attach($request['types']);
 
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    protected function generateSlug(string $title): string
+    {
+        $counter = 0;
+
+        do {
+
+            //if counter is 0, the slug is $title, else "$title-$counter"
+            if ($counter == 0) {
+                $slug = $title;
+            } else {
+                $slug = $title . "-" . $counter;
+            }
+
+            //if it doesn't exist the value is null and the while doesn't begin, else il cycles until it doesn't exist
+            $alreadyExists = Restaurant::where("slug", $slug)->first();
+
+            $counter++;
+        } while ($alreadyExists);
+
+        return $slug;
     }
 }
